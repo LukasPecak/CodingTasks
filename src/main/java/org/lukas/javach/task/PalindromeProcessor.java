@@ -1,3 +1,5 @@
+package org.lukas.javach.task;
+
 /**
  * Created by LPecak on 2016-06-08.
  */
@@ -7,8 +9,7 @@ public class PalindromeProcessor {
         return new PalindromeProcessor();
     }
 
-    private PalindromeProcessor() {
-    }
+    private PalindromeProcessor() {}
 
     public boolean isPalindrome(String text) {
         if(text == null){

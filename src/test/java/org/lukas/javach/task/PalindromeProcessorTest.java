@@ -1,9 +1,13 @@
+package org.lukas.javach.task;
+
 import org.junit.Test;
+import org.lukas.javach.task.PalindromeProcessor;
 
 import static org.junit.Assert.*;
 
 /**
  * Created by LPecak on 2016-06-08.
+ * @author Lukas Pecak
  */
 public class PalindromeProcessorTest {
     private static final String TEST_TEXT_1 = "KAJAK";
