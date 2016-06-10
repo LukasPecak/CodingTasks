@@ -30,7 +30,7 @@ public class IncrementArrayPresentedNumber {
         return result;
     }
 
-    private int[] checkInputNull(int[] input) {
+    public static int[] checkInputNull(int[] input) {
 
         if (input == null || input.length == 0) {
             return new int[]{0};

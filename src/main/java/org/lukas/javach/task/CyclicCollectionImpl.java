@@ -17,6 +17,7 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
         data = (E[]) new Object[size];
     }
 
+    @Override
     public void add(E element) {
         if(element == null) {
             return;
@@ -25,15 +26,17 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
         index++;
     }
 
+    @Override
     public void shift(int offset) {
         offset = offset%size;
+        E[] result = (E[]) new Object[data.length];
         for (int i = 0; i < data.length; i++) {
-            E temp = data[offset+i%size];
-            data[offset+i%size] = data[i];
-            data[i] = temp;
+            result[(offset+i)%size] = data[i];
         }
+        data = result;
     }
 
+    @Override
     public E[] getData() {
         E[] result = (E[]) new Object[data.length];
         System.arraycopy(data, 0, result, 0, data.length);
