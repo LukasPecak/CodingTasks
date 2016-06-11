@@ -5,9 +5,12 @@ package org.lukas.javach.task;
  *
  * @author Lukas Pecak
  */
-public interface CyclicCollection<E> {
+public interface CyclicCollection<E> extends Iterable<E> {
     void add(E element);
+
     void shift(int offest);
+
     E[] getData();
+
     E getElement(int index);
 }

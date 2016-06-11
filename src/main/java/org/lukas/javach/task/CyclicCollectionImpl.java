@@ -1,6 +1,7 @@
 package org.lukas.javach.task;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * Created by LPecak on 2016-06-08.
@@ -19,19 +20,19 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
 
     @Override
     public void add(E element) {
-        if(element == null) {
+        if (element == null) {
             return;
         }
-        data[index%size] = element;
+        data[index % size] = element;
         index++;
     }
 
     @Override
     public void shift(int offset) {
-        offset = offset%size;
+        offset = offset % size;
         E[] result = (E[]) new Object[data.length];
         for (int i = 0; i < data.length; i++) {
-            result[(offset+i)%size] = data[i];
+            result[(offset + i) % size] = data[i];
         }
         data = result;
     }
@@ -43,15 +44,41 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
         return result;
     }
 
+    @Override
     public E getElement(int index) {
-        return data[index%size];
+        return data[index % size];
     }
-
 
     @Override
     public String toString() {
         return "CyclicCollectionImpl{" +
                 "data=" + Arrays.toString(data) +
                 '}';
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new CyclicCollectionIterator();
+    }
+
+    private class CyclicCollectionIterator implements Iterator<E> {
+        private int iteratorPosition;
+
+        private CyclicCollectionIterator() {
+            iteratorPosition = -1;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return iteratorPosition + 1 < size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                return null;
+            }
+            return data[++iteratorPosition];
+        }
     }
 }

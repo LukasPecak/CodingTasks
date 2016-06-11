@@ -14,6 +14,19 @@ public class IncrementArrayPresentedNumber {
         return new IncrementArrayPresentedNumber();
     }
 
+    public static int[] checkInputNull(int[] input) {
+
+        if (input == null || input.length == 0) {
+            return new int[]{0};
+        }
+        for (int i : input) {
+            if (i < 0 || i > 10) {
+                throw new IllegalArgumentException();
+            }
+        }
+        return input;
+    }
+
     public int[] incrementAndGet(int[] input) {
         int[] inputArray = checkInputNull(input);
         StringBuilder numberString = new StringBuilder();
@@ -28,18 +41,5 @@ public class IncrementArrayPresentedNumber {
             result[i] = Integer.valueOf(resultStrings[i]);
         }
         return result;
-    }
-
-    public static int[] checkInputNull(int[] input) {
-
-        if (input == null || input.length == 0) {
-            return new int[]{0};
-        }
-        for (int i : input) {
-            if (i < 0 || i > 10) {
-                throw new IllegalArgumentException();
-            }
-        }
-        return input;
     }
 }

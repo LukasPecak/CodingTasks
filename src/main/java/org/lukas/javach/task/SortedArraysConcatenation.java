@@ -2,17 +2,19 @@ package org.lukas.javach.task;
 
 /**
  * Created by LPecak on 2016-06-08.
+ * @author Lukas Pecak
  */
 public class SortedArraysConcatenation {
+
+    private SortedArraysConcatenation() {
+    }
 
     public static SortedArraysConcatenation getInstance() {
         return new SortedArraysConcatenation();
     }
 
-    private SortedArraysConcatenation(){}
-
     public int[] concatenateArrays(int[] a, int[] b) {
-        if(checkIfNullArrays(a, b)) {
+        if (checkIfNullArrays(a, b)) {
             return someNullArrays(a, b);
         } else {
             return notNullArrays(a, b);
@@ -24,10 +26,10 @@ public class SortedArraysConcatenation {
     }
 
     private int[] someNullArrays(int[] a, int[] b) {
-        if(a == null && b == null) {
+        if (a == null && b == null) {
             return new int[0];
         }
-        if(a == null) {
+        if (a == null) {
             return b;
         }
         return a;
