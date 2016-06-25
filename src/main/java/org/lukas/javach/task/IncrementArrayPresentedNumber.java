@@ -35,7 +35,7 @@ public class IncrementArrayPresentedNumber {
         }
         int number = Integer.parseInt(numberString.toString());
         number++;
-        String[] resultStrings = ("" + number).split("");
+        String[] resultStrings = Integer.toString(number).split("");
         int[] result = new int[resultStrings.length];
         for (int i = 0; i < resultStrings.length; i++) {
             result[i] = Integer.valueOf(resultStrings[i]);

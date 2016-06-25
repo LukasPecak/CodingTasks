@@ -2,6 +2,7 @@ package org.lukas.javach.task;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by LPecak on 2016-06-08.
@@ -29,10 +30,10 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
 
     @Override
     public void shift(int offset) {
-        offset = offset % size;
+        int startPosition = offset % size;
         E[] result = (E[]) new Object[data.length];
         for (int i = 0; i < data.length; i++) {
-            result[(offset + i) % size] = data[i];
+            result[(startPosition + i) % size] = data[i];
         }
         data = result;
     }
@@ -76,7 +77,7 @@ public class CyclicCollectionImpl<E> implements CyclicCollection<E> {
         @Override
         public E next() {
             if (!hasNext()) {
-                return null;
+                throw new NoSuchElementException();
             }
             return data[++iteratorPosition];
         }
